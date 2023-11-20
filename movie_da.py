@@ -23,7 +23,6 @@ top_10_highest_gross_films = sorted_df.head(10)
 print("The Top 10 Highest Grossing Films: ")
 print(top_10_highest_gross_films[['title', 'revenue']])
 
-# Create a bar chart
 plt.figure(figsize=(12, 6))
 plt.bar(top_10_highest_gross_films['title'], top_10_highest_gross_films['revenue'], color='royalblue')
 plt.title('The Top 10 Highest Grossing Films')
@@ -43,7 +42,6 @@ df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
 df['year'] = df['release_date'].dt.year
 total_rev_by_yr = df.groupby('year')['revenue'].sum()
 
-# Create a line chart
 plt.figure(figsize=(12, 6))
 total_rev_by_yr.plot(kind='line', marker='o', color='orange')
 plt.title('The Total Box Office Dollars by Year')
@@ -70,7 +68,6 @@ df['original_language'] = df['original_language'].apply(convert_to_language)
 # Group by language and calculate the average revenue for each language
 avg_rev_by_language = df.groupby('original_language')['revenue'].mean()
 
-# Create a bar chart
 plt.figure(figsize=(16, 6))
 avg_rev_by_language.sort_values(ascending=False).plot(kind='bar', color='royalblue')
 plt.title('Average Box Office Gross by Language')
@@ -86,7 +83,6 @@ plt.show()
 df['vote_average'] = pd.to_numeric(df['vote_average'], errors='coerce')
 df['vote_count'] = pd.to_numeric(df['vote_count'], errors='coerce')
 
-# Create a scatterplot
 plt.figure(figsize=(14, 6))
 plt.scatter(df['vote_average'], df['vote_count'], alpha=0.5, color='green')
 plt.title('Vote Average vs Vote Count')
@@ -101,7 +97,6 @@ plt.show()
 # 5. What relationship, if any, is there between movie runtime and revenue?
 df['runtime'] = pd.to_numeric(df['runtime'], errors='coerce')
 
-# Create a scatterplot
 plt.figure(figsize=(16, 6))
 plt.scatter(df['runtime'], df['revenue'], alpha=0.5, color='purple')
 plt.title('Movie Runtime vs Revenue')
@@ -117,14 +112,12 @@ plt.show()
 df['budget'] = pd.to_numeric(df['budget'], errors='coerce')
 df['profit'] = df['revenue'] - df['budget']
 
-# Sort, select and display the top 10 most profitable films
 sorted_df = df.sort_values(by='profit', ascending=False)
 top_10_profit_films = sorted_df.head(10)
 
 print("Top 10 Most Profitable Films: ")
 print(top_10_profit_films[['title', 'profit']])
 
-# Create a bar chart
 plt.figure(figsize=(12, 6))
 plt.bar(top_10_profit_films['title'], top_10_profit_films['profit'], color='orange')
 plt.title('Top 10 Most Profitable Films')
